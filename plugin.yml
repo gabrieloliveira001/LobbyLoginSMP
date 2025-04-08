@@ -1,0 +1,30 @@
+name: LobbyLogin
+main: me.gabriel.lobbylogin.Main
+version: 1.0
+author: gabriel
+description: Um plugin com lobby e login
+api-version: 1.21.4
+
+commands:
+  lobby:
+    description:
+    permission: 
+  login:
+    description:
+    permission:
+  register:
+    description:
+    permission: 
+  setlobby:
+    description:
+    permission: 
+  changepass:
+    description:
+    permission: 
+  teste:
+    description:
+    permission: 
+    
+    
+  
+
