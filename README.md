@@ -1,4 +1,7 @@
-Plugin de Login incluso com lobby simples com /register, /login, /changepass /setlobby(apenas admins)
+Veja o plugin funcionando [aqui.](https://github.com/user-attachments/assets/37d7c5e3-4360-4470-bb49-fec5fcf54397)
+
+Plugin de Login incluso com lobby simples com /register, /login, /changepass /setlobby(apenas admins).
+
 ### Qual a diferença do LobbyLoginSMP pro LobbyLogin?
 LobbyLoginSMP - Plugin de login completo + redireciona o jogador para a última localização aonde esteve ao realizar o login.
 
