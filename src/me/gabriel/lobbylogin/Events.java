@@ -1,6 +1,7 @@
 package me.gabriel.lobbylogin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -23,6 +24,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.md_5.bungee.api.ChatMessageType;
@@ -99,6 +101,27 @@ public class Events implements Listener {
 		}.runTaskTimer(plugin, 0L, 20L);
 	}
 
+	@EventHandler
+	private void onQuit(PlayerQuitEvent e) {
+		
+		Player player = e.getPlayer();
+		UUID playerUUID = player.getUniqueId();
+		
+		if (logado.get(playerUUID)) {
+			File loginFile = new File(plugin.getDataFolder(), "locations.yml");
+			FileConfiguration locationsConfig = YamlConfiguration.loadConfiguration(loginFile);
+			
+			Location loc = player.getLocation();
+			locationsConfig.set("locations." + playerUUID, loc);
+			try {
+				locationsConfig.save(loginFile);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+	
+	
 	@EventHandler
 	private void onMove(PlayerMoveEvent e) {
 

@@ -27,6 +27,7 @@ public class Commands implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
 		Player player = (Player) sender;
+		UUID playerUUID = player.getUniqueId();
 
 		File loginFile = new File(plugin.getDataFolder(), "logins.yml");
 		FileConfiguration loginConfig = YamlConfiguration.loadConfiguration(loginFile);
@@ -123,6 +124,13 @@ public class Commands implements CommandExecutor {
 				String senhaSalva = loginConfig.getString(playerKey);
 
 				if (senhaHash.equals(senhaSalva)) {
+					File loginLocations = new File(plugin.getDataFolder(), "locations.yml");
+					FileConfiguration locationsConfig = YamlConfiguration.loadConfiguration(loginLocations);
+					
+					Location loc = (Location) locationsConfig.get("locations." + playerUUID);
+					if(loc != null) {
+						player.teleport(loc);
+					}
 					logado.put(player.getUniqueId(), true);
 
 					player.sendTitle("§e§lBem vindo!", "§aLogado com sucesso!", 10, 40, 10);
